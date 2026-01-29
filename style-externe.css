@@ -1,0 +1,20 @@
+
+
+nav a:hover {
+    color: #d4af37;
+    transition: color 0.3s ease;
+}
+
+section h2 {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+footer pre {
+    color: #d4af37;
+    font-size: 14px;
+}
+
+.email-btn:hover {
+    background-color: #b9962e;
+}
