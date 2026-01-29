@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>ShopSmart - E-Commerce</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+
+
+<style>
+/* ===== BASE ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.profile-pic {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 2px solid #d4af37;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+    z-index: 2;
+}
+.creator-name {
+    position: absolute;
+    top: 120px;          /* sous la photo */
+    right: 40px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+
+    color: rgb(255, 255, 255);
+    opacity: 0.85;
+
+    text-shadow: 1px 2px 8px rgba(0,0,0,0.6);
+    z-index: 2;
+}
+
+
+/* ===== HEADER ===== */
+header.banner {
+    position: relative;
+    height: 70vh;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+/* vidéo en arrière-plan */
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+
+
+
+/* bloc logo */
+.logo {
+    text-align: center; /* centre photo + texte */
+    background:none;
+    padding: 0;
+    border-radius: 20px;
+    box-shadow: none;
+}
+
+
+/* texte Pearla */
+.logo h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 96px;
+    font-weight: 600;
+    color: #d4af37;
+    letter-spacing: 3px;
+    margin: 0;
+
+    /* OMBRAGE */
+    text-shadow:
+        0 0 8px rgba(240, 217, 9, 0.9),
+        0 0 18px rgba(43, 41, 41, 0.6),
+        0 0 35px rgba(255, 215, 100, 0.8);
+}
+
+
+.tagline {
+    font-family: "Playfair Display", serif;
+    font-size: 16px;
+    letter-spacing: 4px;
+    color: white;
+    margin-top: 10px;
+}
+
+
+
+
+
+/* ===== MENU ===== */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    background: #222;
+    margin: 0;
+    padding: 15px;
+}
+
+nav li {
+    margin: 0 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main section {
+    display: none;
+}
+
+main section.active {
+    display: block;
+}
+
+
+/* Accueil visible par défaut */
+.legend-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.legend-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 3px solid #d4af37;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+#accueil {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(to bottom, #fffaf0, #ffffff);
+}
+
+#accueil h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 44px;
+    color: #d4af37;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.story {
+    max-width: 750px;
+    margin: auto;
+    font-family: "Playfair Display", serif;
+    font-size: 17px;
+    line-height: 2;
+    color: #3b3b3b;
+}
+
+
+/* Quand une section est ciblée */
+main section:target {
+    display: block;
+}
+
+
+
+
+/* ===== PRODUITS ===== */
+.carousel {
+    position: relative;
+    width: 520px;
+    height: 600px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carousel img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 30px;
+
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.carousel img.active {
+    opacity: 1;
+}
+
+.carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background: rgba(255,255,255,0.7);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.carousel .prev {
+    left: 15px;
+}
+
+.carousel .next {
+    right: 15px;
+}
+
+.products {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#produits {
+    display: block;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-info {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.description {
+    font-family: "Playfair Display", serif;
+    font-size: 15px;
+    color: #555;
+    max-width: 420px;
+    margin: 0 auto 10px;
+    line-height: 1.7;
+}
+
+.price {
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    color: #d4af37;
+    letter-spacing: 1px;
+}
+
+.card {
+    width: 200px;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* ===== BEST ===== */
+.best {
+    background: #ffeaa7;
+}
+
+/* ===== BOUTONS ===== */
+.btn {
+    display: inline-block;
+    background: #6c63ff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+#copyright {
+    color: yellow;
+    font-weight: bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="banner">
+
+    <video autoplay muted loop playsinline class="bg-video">
+        <source src="videos/video.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo.
+    </video>
+    <img src="images/me.jpeg" alt="Photo de la créatrice" class="profile-pic">
+    <p class="creator-name">Créatrice</p>
+    
+
+    <div class="logo">
+        
+        <h1>Pearla</h1>
+        <p class="tagline">Fine Jewelry Store</p>
+    </div>
+
+</header>
+
+
+
+<nav>
+    <ul>
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#produits">Produits</a></li>
+        <li><a href="#best">Best Sellers</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<main>
+
+<section id="accueil">
+    <div class="legend-image">
+    
+        <img src="images/prince.jpg" alt="Prince et Princesse">
+
+    </div>
+
+    <h2>The Legend of Pearla</h2>
+    <p class="story">
+        Long ago, in a kingdom of marble and gold,  
+        a prince noticed a girl from the people.
+        <br><br>
+        She wore no crown, no silk, no title —  
+        yet she shone brighter than the palace itself.
+        <br><br>
+        It was not her dress that caught his eyes,  
+        but the way her jewels reflected her soul.
+        <br><br>
+        He learned that true royalty is not inherited,  
+        it is revealed.
+        <br><br>
+        And from that love was born Pearla —  
+        jewelry made for women who shine without asking permission.
+    </p>
+</section>
+
+
+<section id="produits">
+
+    <article class="product-item">
+
+        <div class="carousel">
+            <img src="images/product10.png" class="active">
+            <img src="images/product11.png">
+            <img src="images/product12.png">
+            <img src="images/product13.png">
+
+            <button class="prev">‹</button>
+            <button class="next">›</button>
+        </div>
+
+        <div class="product-info">
+            <p class="description">
+                A golden necklace inspired by royal elegance and timeless femininity.
+            </p>
+            <span class="price">20.000 DH</span>
+        </div>
+
+    </article>
+
+</section>
+
+
+
+<section id="best">
+    <h2>Best Sellers</h2>
+    <div class="products">
+        <article class="card best">
+            <h3>Best 1</h3>
+            <p>399 DH</p>
+        </article>
+        <article class="card best">
+            <h3>Best 2</h3>
+            <p>459 DH</p>
+        </article>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <a href="mailto:abir@email.com" class="btn">📧 Envoyer un e-mail</a>
+</section>
+
+</main>
+
+<footer>
+    <p id="copyright">© Abir</p>
+    
+</footer>
+
+<script>
+
+
+// Afficher Accueil au chargement
+showSection('#accueil');
+
+document.querySelectorAll('.carousel').forEach(carousel => {
+    const images = carousel.querySelectorAll('img');
+    let index = 0;
+
+    carousel.querySelector('.next').onclick = () => {
+        images[index].classList.remove('active');
+        index = (index + 1) % images.length;
+        images[index].classList.add('active');
+    };
+
+    carousel.querySelector('.prev').onclick = () => {
+        images[index].classList.remove('active');
+        index = (index - 1 + images.length) % images.length;
+        images[index].classList.add('active');
+    };
+});
+</script>
+
+</body>
+</html>
+
+
+
