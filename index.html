@@ -179,10 +179,6 @@ main section.active {
 }
 
 
-/* Quand une section est ciblée */
-main section:target {
-    display: block;
-}
 
 
 
@@ -243,7 +239,7 @@ main section:target {
 }
 
 #produits {
-    display: block;
+
     text-align: center;
     padding: 80px 20px;
 }
@@ -352,7 +348,7 @@ footer {
 
 <main>
 
-<section id="accueil">
+<section id="accueil" class="active">
     <div class="legend-image">
     
         <img src="images/prince.jpg" alt="Prince et Princesse">
@@ -433,11 +429,6 @@ footer {
 </footer>
 
 <script>
-
-
-// Afficher Accueil au chargement
-showSection('#accueil');
-
 document.querySelectorAll('.carousel').forEach(carousel => {
     const images = carousel.querySelectorAll('img');
     let index = 0;
@@ -454,10 +445,23 @@ document.querySelectorAll('.carousel').forEach(carousel => {
         images[index].classList.add('active');
     };
 });
+
+
+const sections = document.querySelectorAll("main section");
+const links = document.querySelectorAll("nav a");
+
+links.forEach(link => {
+    link.addEventListener("click", e => {
+        e.preventDefault();
+
+        sections.forEach(sec => sec.classList.remove("active"));
+
+        const target = document.querySelector(link.getAttribute("href"));
+        if (target) target.classList.add("active");
+    });
+});
 </script>
+
 
 </body>
 </html>
-
-
-
