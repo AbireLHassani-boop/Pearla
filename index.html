@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>ShopSmart - E-Commerce</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style-externe.css">
 
 
 <style>
@@ -111,6 +112,7 @@ header.banner {
 
 /* ===== MENU ===== */
 nav ul {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
     list-style: none;
     display: flex;
     justify-content: center;
@@ -159,6 +161,7 @@ main section.active {
     text-align: center;
     padding: 80px 20px;
     background: linear-gradient(to bottom, #fffaf0, #ffffff);
+    box-shadow: inset 0 0 30px rgba(212,175,55,0.15);
 }
 
 #accueil h2 {
@@ -311,9 +314,72 @@ footer {
     color: yellow;
     font-weight: bold;
 }
+.info-table {
+    width: 85%;
+    margin: 40px auto;
+    border-collapse: collapse;
+}
+
+.info-table th,
+.info-table td {
+    border: 1px solid #d4af37;
+    padding: 14px;
+    text-align: center;
+}
+
+.info-table th {
+    background: #d4af37;
+    color: white;
+}
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    background: #d4af37;
+    color: white;
+    border: none;
+
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+
+    font-size: 20px;
+    cursor: pointer;
+
+    display: none; /* caché au début */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 999;
+}
+
+#backToTop:hover {
+    background: #b9962e;
+}
+.email-btn {
+    display: inline-block;
+    margin-top: 25px;
+
+    background: #d4af37;
+    color: white;
+    padding: 12px 26px;
+
+    border-radius: 25px;
+    text-decoration: none;
+
+    font-family: "Playfair Display", serif;
+    font-size: 16px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.email-btn:hover {
+    background: #b9962e;
+}
+
 
 </style>
 </head>
+<button id="backToTop" title="Retour en haut">⬆</button>
 
 <body>
 
@@ -329,8 +395,12 @@ footer {
 
     <div class="logo">
         
-        <h1>Pearla</h1>
-        <p class="tagline">Fine Jewelry Store</p>
+        <h1 style="border-radius: 25px;">Pearla</h1>
+
+        <p class="tagline"style="font-style: italic;">
+            Fine Jewelry Store
+       </p>
+
     </div>
 
 </header>
@@ -418,15 +488,38 @@ footer {
 
 <section id="contact">
     <h2>Contact</h2>
-    <a href="mailto:abir@email.com" class="btn">📧 Envoyer un e-mail</a>
+
+    <table class="info-table">
+        <thead>
+            <tr>
+                <th>Téléphone mobile</th>
+                <th>Téléphone fixe</th>
+                <th>Email</th>
+                <th>Instagram</th>
+                <th>TikTok</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>+212 6 12 34 56 78</td>
+                <td>+212 5 37 00 00 00</td>
+                <td>contact@pearla.com</td>
+                <td>@pearla.jewels</td>
+                <td>@pearla_official</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="mailto:contact@pearla.com" class="email-btn"style="background-color:#b9962e;">
+    
+        📧 Envoyer un e-mail
+
+    </a>
+
 </section>
+
 
 </main>
 
-<footer>
-    <p id="copyright">© Abir</p>
-    
-</footer>
 
 <script>
 document.querySelectorAll('.carousel').forEach(carousel => {
@@ -460,7 +553,37 @@ links.forEach(link => {
         if (target) target.classList.add("active");
     });
 });
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+        backToTop.style.display = "block";
+    } else {
+        backToTop.style.display = "none";
+    }
+});
+
+backToTop.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
 </script>
+<footer>
+    <p id="copyright">© Abir</p>
+
+    <pre>
+   ___  _     _     
+  / _ \| |__ (_)_ __
+ | | | | '_ \| | '__|
+ | |_| | |_) | | |   
+  \___/|_.__/|_|_|   
+    </pre>
+</footer>
+
+</body>
+</html>
 
 
 </body>
